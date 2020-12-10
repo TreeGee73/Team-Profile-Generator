@@ -30,7 +30,7 @@ inquirer
     // Starts by asking questions about the manager
     .prompt(mgrQuestions)
     // Construct Manager object from user input
-    .then(input => {teamData.push(new Manager(input.name, input.id, input.email, input.officeNumber));
+    .then(input => {teamData.push(new Manager(input.name, input.id, input.email, input.office));
         // Moves on to collect additional employee data or render collected data depending on user selection
         empType = input.addEmp;
             // If the user selection is to add an Engineer, will execute the getEngineer function
@@ -55,6 +55,29 @@ inquirer
     })
 
 // If user indicates the addition of an engineer this function is executed.
+function getEngineer() {
+    inquirer
+        // Starts by asking questions about the engineer
+        .prompt(engQuestions)
+        // Construct Engineer object from user answers
+        .then(answer => {teamData.push(new Engineer(answer.name, answer.id, answer.email, answer.userName));
+            // Moves on to collect additional employee data or render collected data depending on user selection
+            empType = answer.addEmp;
+            // If the user selection is to add an Engineer, will execute the getEngineer function
+            if(empType === 'Engineer') {
+            getEngineer();
+            }
+            // If the user selection is to add an Intern, will execute the getIntern function
+            else if(empType === 'Intern') {
+                getIntern();
+            }
+            // If the user selection is done, will render the teamData array into HTML and execute the writeHTMLFile function to place the new HTML code in team.html for display on a browser
+            else {
+                const html = render(teamData);
+                writeHTMLFile(html);
+            }
+        })
+}
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
