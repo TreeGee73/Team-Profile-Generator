@@ -1,23 +1,23 @@
 // Node Packages
-const inquirer = require("inquirer");
-const path = require("path");
-const fs = require("fs");
+const inquirer = require('inquirer');
+const path = require('path');
+const fs = require('fs');
 
 // Outside File Variables
-const Manager = require("./lib/Manager");
-const mgrQuestions = require("./questions/MgrQuestions");
+const Manager = require('./lib/Manager');
+const mgrQuestions = require('./promises/MgrQuestions');
 
-const Engineer = require("./lib/Engineer");
-const engQuestions = require("./questions/EngQuestions");
+const Engineer = require('./lib/Engineer');
+const engQuestions = require('./promises/EngQuestions');
 
-const Intern = require("./lib/Intern");
-const internQuestions = require("./questions/InternQuestions");
+const Intern = require('./lib/Intern');
+const internQuestions = require('./promises/InternQuestions');
 
-const render = require("./lib/htmlRenderer");
+const render = require('./lib/htmlRenderer');
 
 // Path Variables
-const OUTPUT_DIR = path.resolve(__dirname, "output");
-const outputPath = path.join(OUTPUT_DIR, "team.html");
+const OUTPUT_DIR = path.resolve(__dirname, 'output');
+const outputPath = path.join(OUTPUT_DIR, 'team.html');
 
 // Employee & Team variables
 let empType;
@@ -31,9 +31,9 @@ const teamData = [];
 // generate and return a block of HTML including templated divs for each employee!
 
 inquirer
-    // Starts by asking questions about the manager
+    // Starts by asking questions about the manager, invokes the mgrQuestions promise
     .prompt(mgrQuestions)
-    // Construct Manager object from user input and push it into the teamData array
+    // Takes in the data gathered in mgrQuestions and pushes it into the teamData array
     .then(input => {teamData.push(new Manager(input.name, input.id, input.email, input.officeNumber));
         // Moves on to collect additional employee data or render collected data depending on user selection
         empType = input.addEmp;
@@ -61,9 +61,9 @@ inquirer
 // If user indicates the addition of an engineer this function is executed.
 function getEngineer() {
     inquirer
-        // Starts by asking questions about the engineer
+        // Starts by asking questions about the engineer, invokes the engQuestions promise
         .prompt(engQuestions)
-        // Construct Engineer object from user answers
+        // Takes in the data gathered in engQuestions and pushes it into the teamData array
         .then(answer => {teamData.push(new Engineer(answer.name, answer.id, answer.email, answer.github));
             // Moves on to collect additional employee data or render collected data depending on user selection
             empType = answer.addEmp;
@@ -86,9 +86,9 @@ function getEngineer() {
 // If user indicates the addition of an intern this function is executed.
 function getIntern() {
     inquirer
-        // Starts by asking questions about the intern
+        // Starts by asking questions about the intern, invokes the internQuestions promise
         .prompt(internQuestions)
-        // Construct Intern object from user answers
+        // Takes in the data gathered in internQuestions and pushes it into the teamData array
         .then(answer => {teamData.push(new Intern(answer.name, answer.id, answer.email, answer.school));
             // Moves on to collect additional employee data or render collected data depending on user selection
             empType = answer.addEmp;
@@ -116,6 +116,6 @@ function getIntern() {
 function writeHTMLFile(html){
     fs.writeFile(outputPath, html, error => {
         if(error){ return console.log(error); }
-        console.log("successfully created team.html...");
+        console.log('Your team.html has been created!');
     })
 }
