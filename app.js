@@ -8,7 +8,7 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const render = require("./lib/htmlRenderer");
-// const Questions = require("./lib/Questions");
+const Questions = require("./lib/Questions");
 
 // Path Variables
 const OUTPUT_DIR = path.resolve(__dirname, "output");
@@ -66,6 +66,31 @@ function getEngineer() {
             // If the user selection is to add an Engineer, will execute the getEngineer function
             if(empType === 'Engineer') {
             getEngineer();
+            }
+            // If the user selection is to add an Intern, will execute the getIntern function
+            else if(empType === 'Intern') {
+                getIntern();
+            }
+            // If the user selection is done, will render the teamData array into HTML and execute the writeHTMLFile function to place the new HTML code in team.html for display on a browser
+            else {
+                const html = render(teamData);
+                writeHTMLFile(html);
+            }
+        })
+}
+
+// If user indicates the addition of an intern this function is executed.
+function getIntern() {
+    inquirer
+        // Starts by asking questions about the intern
+        .prompt(internQuestions)
+        // Construct Intern object from user answers
+        .then(answer => {teamData.push(new Intern(answer.name, answer.id, answer.email, answer.school));
+            // Moves on to collect additional employee data or render collected data depending on user selection
+            empType = answer.addEmp;
+            // If the user selection is to add an Engineer, will execute the getEngineer function
+            if(empType === 'Engineer') {
+                getEngineer();
             }
             // If the user selection is to add an Intern, will execute the getIntern function
             else if(empType === 'Intern') {
