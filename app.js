@@ -109,3 +109,9 @@ function getIntern() {
 // `output` folder. You can use the variable `outputPath` above target this location.
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.
+function writeHTMLFile(html){
+    fs.writeFile(outputPath, html, error => {
+        if(error){ return console.log(error); }
+        console.log("successfully created team.html...");
+    })
+}
