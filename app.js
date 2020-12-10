@@ -5,13 +5,13 @@ const fs = require("fs");
 
 // Outside File Variables
 const Manager = require("./lib/Manager");
-const mgrQuestions = require("./lib/MgrQuestions");
+const mgrQuestions = require("./questions/MgrQuestions");
 
 const Engineer = require("./lib/Engineer");
-const engQuestions = require("./lib/EngQuestions");
+const engQuestions = require("./questions/EngQuestions");
 
 const Intern = require("./lib/Intern");
-const internQuestions = require("./lib/InternQuestions");
+const internQuestions = require("./questions/InternQuestions");
 
 const render = require("./lib/htmlRenderer");
 
