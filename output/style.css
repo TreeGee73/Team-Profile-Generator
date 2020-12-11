@@ -1,0 +1,28 @@
+body {
+    background-image: url('background.jpg');
+    background-size: auto;
+    background-color: #7a99c4;
+    color: #4c4c4f
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+}
+
+.team-heading {
+    color: #0c3a79;
+    background-color: rgba(122, 153, 196, 0.85);
+}
+
+.employee-card {
+    margin-right: 2rem;
+    min-width: 20rem;
+    background-color: rgba(210, 210, 211, 0.95);
+}
+
+h2 {
+    color: #0c3a79;
+    padding-top: 15px;
+}
+
+h3 {
+    color: #7e3716;
+    padding-top: 15px;
+}

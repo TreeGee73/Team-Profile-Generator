@@ -1,4 +1,4 @@
-// Node Packages
+// Required Packages
 const inquirer = require('inquirer');
 const path = require('path');
 const fs = require('fs');
@@ -31,7 +31,7 @@ const teamData = [];
 // generate and return a block of HTML including templated divs for each employee!
 
 inquirer
-    // Starts by asking questions about the manager, invokes the mgrQuestions promise
+    // Starts by asking questions about the manager, returns the mgrQuestions promise
     .prompt(mgrQuestions)
     // Takes in the data gathered in mgrQuestions and pushes it into the teamData array
     .then(input => {teamData.push(new Manager(input.name, input.id, input.email, input.officeNumber));
@@ -51,7 +51,7 @@ inquirer
                 writeHTMLFile(html);
             }
         })
-    // If promise should fail returns an error in the console log and ends/exits the program
+    // If function should fail returns an error in the console log and ends/exits the program
     .catch(error => {
         console.log(error);
         // To exit with a 'failure' code, the shell that executed Node.js should see the exit code as 1. Calling process.exit() will force the process to exit as quickly as possible even if there are still asynchronous operations pending that have not yet completed fully, including I/O operations to process.stdout and process.stderr. 
@@ -61,7 +61,7 @@ inquirer
 // If user indicates the addition of an engineer this function is executed.
 function getEngineer() {
     inquirer
-        // Starts by asking questions about the engineer, invokes the engQuestions promise
+        // Starts by asking questions about the engineer, returns the engQuestions promise
         .prompt(engQuestions)
         // Takes in the data gathered in engQuestions and pushes it into the teamData array
         .then(answer => {teamData.push(new Engineer(answer.name, answer.id, answer.email, answer.github));
@@ -69,7 +69,7 @@ function getEngineer() {
             empType = answer.addEmp;
             // If the user selection is to add an Engineer, will execute the getEngineer function
             if(empType === 'Engineer') {
-            getEngineer();
+                getEngineer();
             }
             // If the user selection is to add an Intern, will execute the getIntern function
             else if(empType === 'Intern') {
@@ -86,7 +86,7 @@ function getEngineer() {
 // If user indicates the addition of an intern this function is executed.
 function getIntern() {
     inquirer
-        // Starts by asking questions about the intern, invokes the internQuestions promise
+        // Starts by asking questions about the intern, returns the internQuestions promise
         .prompt(internQuestions)
         // Takes in the data gathered in internQuestions and pushes it into the teamData array
         .then(answer => {teamData.push(new Intern(answer.name, answer.id, answer.email, answer.school));
@@ -114,8 +114,11 @@ function getIntern() {
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.
 function writeHTMLFile(html){
+    // Creates the HTML file that will display the information gathered in the app on a web page.
     fs.writeFile(outputPath, html, error => {
+        // If function should fail returns an error in the console log
         if(error){ return console.log(error); }
+        // Returns a message in the console log confirmint the file was successfully created.
         console.log('Your team.html has been created!');
     })
 }
