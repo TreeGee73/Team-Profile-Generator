@@ -7,6 +7,7 @@
   * [Installation](#install)
   * [Testing](#test)
   * [License](#license)
+  * [Credits](#credits)
   * [Demo Video](#demo)
   * [Contributing to This Repo](#contributefaq)
   * [Questions / Contact Details](#questions)
@@ -30,6 +31,10 @@ npm test
 <a name='license'></a>
 ## License
 The application is covered under a MIT license.
+
+<a name='credits'></a>
+## Credits
+Background image is a free to use image that was obtained from [Pexels.com](https://www.pexels.com/).
 
 <a name='demo'></a>
 ## Demo Video
