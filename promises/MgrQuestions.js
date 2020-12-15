@@ -10,7 +10,12 @@ const mgrQuestions = [
     {
         type:'input',
         name: 'name',
-        message: 'Hello, Team Manager! What is your name?'
+        message: 'Hello, Team Manager! What is your name?',
+        // This checks to see if the has been entered. If the entry is not a string, will console log an error and prompt for the user to enter a name.
+        validate: answer => {if (answer === '') {
+            return 'Cannot be blank, please enter a valid name.';
+            } else {return true}
+        },
     },
     {
         type: 'input',

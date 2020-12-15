@@ -1,0 +1,33 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "team_generator",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "inquirer": "^7.3.3",
+    "jest": "^26.6.3",
+    "node": "^15.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TreeGee73/Team-Profile-Generator.git"
+  },
+  "keywords": [
+    "'"
+  ],
+  "author": "Theresa Grier",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TreeGee73/Team-Profile-Generator/issues"
+  },
+  "homepage": "https://github.com/TreeGee73/Team-Profile-Generator#readme"
+}
